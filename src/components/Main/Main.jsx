@@ -13,7 +13,7 @@ function Main() {
         <AboutMe />
         <Portfolio />
         </>
-    )
+    );
 }
 
 export default Main;

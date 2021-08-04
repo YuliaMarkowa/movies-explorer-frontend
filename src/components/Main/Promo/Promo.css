@@ -1,13 +1,14 @@
 .promo {
     background-color: #5C5C5C;
-    padding: 0 70px 60px;
 }
 
 .promo__container {
+    padding: 0 70px 60px;
+    box-sizing: border-box;
     max-width: 1280px;
     min-height: 560px;
     margin: 0 auto;
-    background: url('../../../images/logo-promo.svg') right bottom no-repeat;
+    background: url('../../../images/logo-promo.svg') right 70px bottom 60px no-repeat;
 }
 
 .promo__title {

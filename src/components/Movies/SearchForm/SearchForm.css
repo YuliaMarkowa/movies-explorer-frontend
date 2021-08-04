@@ -1,0 +1,42 @@
+.search-movie {
+    padding: 60px 70px 10px;
+    max-width: 1280px;
+    margin: 0 auto;
+    box-sizing: border-box;
+}
+
+.search-movie__form {
+    border-bottom: 1px solid rgba(232, 232, 232, 1);
+}
+
+.search-movie__container {
+    width: 100%;
+    position: relative;
+}
+
+.search-movie__input {
+    box-sizing: border-box;
+    font-size: 13px;
+    font-weight: normal;
+    color: #A0A0A0;
+    min-height: 46px;
+    background: #F9F9F9;
+    width: 100%;
+    border: none;
+    border-radius: 40px;
+    padding-left: 22px;
+}
+
+.search-movie__submit {
+    font-size: 11px;
+    font-weight: 500;
+    color: #FFF;
+    height: 34px;
+    width: 80px;
+    position: absolute;
+    border-radius: 48px;
+    background: #2BE080;
+    border: none;
+    right: 6px;
+    top: 6px;
+}

@@ -1,11 +1,14 @@
 .my-works {
     background: #FFFFFF;
-    padding: 0 70px 125px;
+    
 }
 
 .my-works__container {
+    padding: 0 70px 125px;
+    box-sizing: border-box;
     max-width: 1280px;
     margin: 0 auto;
+    
 }
 
 .my-works__heading {

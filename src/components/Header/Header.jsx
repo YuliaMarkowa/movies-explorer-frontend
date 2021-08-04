@@ -7,7 +7,9 @@ function Header({ loggedIn }) {
     return (
       <header className={`header ${!loggedIn ? "header_dark" : ""}`}>
         <div className="header__container">
-        <img src={logo} alt="Главная страница" className="header__logo" />
+          <Link to="/">
+            <img src={logo} alt="Главная страница" className="header__logo" />
+          </Link>
         {!loggedIn ? (
           <div className="header__link-container">
             <Link to="/signup" className="header__link">
