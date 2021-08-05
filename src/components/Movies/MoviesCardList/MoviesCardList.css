@@ -5,6 +5,6 @@
     display: grid;
     grid-template-columns: repeat(auto-fill, 270px);
     gap: 38px 20px;
-    justify-content: center;
+    place-content: center;
     box-sizing: border-box;
 }

@@ -4,8 +4,9 @@ import avatar from '../../../images/student-img.jpeg';
 function AboutMe() {
   return (
     <section className="myself">
-        <h2 className="myself__title">Студент</h2>
       <div className="myself__container">
+        <h2 className="myself__title">Студент</h2>
+      <div className="myself__main">
         <div className="myself__info">
           <h3 className="myself__heading">Юля</h3>
           <p className="myself__caption">
@@ -13,8 +14,6 @@ function AboutMe() {
           </p>
           <p className="myself__text">
           Я начала заниматься разработкой, не имея никакого опыта.
-          Курс сильно меня изменил.
-          Теперь я сёрфю интернет более осмысленно.
           Слушаю музыку на виниле.
           По образованию я инженер.
           </p>
@@ -38,6 +37,7 @@ function AboutMe() {
         </nav>
         </div>
         <img src={avatar} alt="Аватар пользователя" className="myself__avatar" />
+        </div>
         </div>
     </section>
   );

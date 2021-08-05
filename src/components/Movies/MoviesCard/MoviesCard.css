@@ -26,14 +26,23 @@
     margin: 0;
 }
 
-.movie-card__like-button {
+.movie-card__button {
     width: 24px;
     height: 24px;
-    border-radius: 36px;
+    background: #F9F9F9;
     background-image: url(../../../images/save-button.svg);
-    border: none;
+    border-radius: 36px;
     background-position: center;
     background-repeat: no-repeat;
     cursor: pointer;
     padding: 0;
+    border: none;
+}
+
+.movie-card__button_save-active {
+    background-image: url(../../../images/save-button-active.svg);
+}
+
+.movie-card__button_remove {
+    background-image: url(../../../images/remove-button.svg);
 }

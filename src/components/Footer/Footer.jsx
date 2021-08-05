@@ -20,7 +20,7 @@ function Footer() {
                   Яндекс.Практикум
                 </a>
               </li>
-              <li className="footer__links-point">
+              <li className="footer__link-point">
                 <a
                   href="https://github.com/YuliaMarkowa"
                   target="_blank"
@@ -30,7 +30,7 @@ function Footer() {
                   Github
                 </a>
               </li>
-              <li className="footer__links-point">
+              <li className="footer__link-point">
                 <a
                   href="https://t.me/markowayulia"
                   target="_blank"

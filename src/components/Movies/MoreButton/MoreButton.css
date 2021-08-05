@@ -1,0 +1,21 @@
+.more-button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: #F9F9F9;
+    height: 32px;
+    width: 100%;
+    max-width: 1140px;
+    font-size: 12px;
+    font-weight: 500;
+    margin: 0 auto;
+    color: #000;
+    margin-top: 50px;
+    margin-bottom: 80px;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: opacity 0.5s ease;
+    outline: none;
+    text-decoration: none;
+}
