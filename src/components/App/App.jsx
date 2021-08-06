@@ -7,10 +7,10 @@ import Main from '../Main/Main';
 import Movies from '../Movies/Movies';
 import Footer from '../Footer/Footer';
 import SavedMovies from '../SavedMovies/SavedMovies';
-//import Profile from '../Profile/Profile';
+import Profile from '../Profile/Profile';
 import Register from '../Register/Register'
 import Login from '../Login/Login';
-//import NotFoundPage from '../NotFoundPage/NotFoundPage';
+import NotFoundPage from '../NotFoundPage/NotFoundPage';
 
 function App() {
   return (
@@ -34,7 +34,10 @@ function App() {
           <Footer />
         </Route>
 
-        <Route path="/profile"></Route>
+        <Route path="/profile">
+          <Header loggedIn={true} />
+          <Profile />
+        </Route>
 
         <Route path="/signup">
           <Register />
@@ -44,7 +47,9 @@ function App() {
           <Login />
         </Route>
 
-        <Route path="/*"></Route>
+        <Route path="/*">
+          <NotFoundPage />
+        </Route>
       </Switch>
     </div>
   );

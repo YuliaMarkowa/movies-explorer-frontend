@@ -1,6 +1,6 @@
-import "./AuthForm.css";
-import { Link } from "react-router-dom";
-import logo from "../../images/logo-header.svg";
+import './AuthForm.css';
+import { Link } from 'react-router-dom';
+import logo from '../../images/logo-header.svg';
 
 function AuthForm({ headingContent, submitContent, guessContent, pathContent, path, signUp }) {
   //const { headingContent, submitContent, guessContent, pathContent } = content;
@@ -8,10 +8,10 @@ function AuthForm({ headingContent, submitContent, guessContent, pathContent, pa
   return (
     <section className="auth">
       <Link to="/">
-        <img src={logo} alt="Главная страница" className="auth__logo" />
+        <img src={logo} alt="На главную страницу" className="auth__logo" />
       </Link>
+      <h1 className="auth__heading">{headingContent}</h1>
       <form className="auth__form" name="authForm">
-        <h1 className="auth__heading">{headingContent}</h1>
         {signUp ? (
           <>
             <label className="auth__text">Имя</label>
