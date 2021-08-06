@@ -1,5 +1,5 @@
 .movies__list {
-    padding: 0 70px;
+    padding: 70px 70px 10px;
     max-width: 1280px;
     margin: 0 auto;
     display: grid;
@@ -7,4 +7,25 @@
     gap: 38px 20px;
     place-content: center;
     box-sizing: border-box;
+}
+
+@media (max-width: 850px) {
+    .movies__list {
+        padding-left: 30px;
+        padding-right: 30px;
+        margin: 0 auto;
+        display: grid;
+        grid-template-columns: repeat(auto-fill, 339px);
+        gap: 30px 30px;
+    }
+}
+
+@media (max-width: 450px) {
+    .movies__list {
+        padding: 40px 10px 10px;
+        margin: 0 auto;
+        display: grid;
+        grid-template-columns: repeat(auto-fill, 300px);
+        column-gap: 34px;
+    }
 }

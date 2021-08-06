@@ -1,11 +1,8 @@
 .more-button {
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    display: block;
     background: #F9F9F9;
-    height: 32px;
-    width: 100%;
-    max-width: 1140px;
+    min-height: 36px;
+    width: 1140px;
     font-size: 12px;
     font-weight: 500;
     margin: 0 auto;
@@ -18,4 +15,17 @@
     transition: opacity 0.5s ease;
     outline: none;
     text-decoration: none;
+    padding: 0;
+}
+
+@media (max-width: 1185px) {
+    .more-button {
+    max-width: 708px;
+}
+}
+
+@media (max-width: 767px) {
+    .more-button {
+        max-width: 300px;
+    }
 }

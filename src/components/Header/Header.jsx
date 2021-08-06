@@ -20,6 +20,7 @@ function Header({ loggedIn }) {
             </Link>
           </div>
         ) : (
+          <>
           <div className="header__menu">
             <nav className="header__nav">
               <Link
@@ -47,6 +48,8 @@ function Header({ loggedIn }) {
               />
             </Link>
           </div>
+          <button></button>
+          </>
         )}
         </div>
       </header>

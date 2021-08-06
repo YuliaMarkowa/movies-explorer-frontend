@@ -57,3 +57,10 @@
   .switch__input:checked + .switch__slider::before {
     transform: translateX(16px);
   }
+
+  @media (max-width: 450px) {
+    .switch__text {
+      font-size: 11px;
+      margin-left: 13px;
+    }
+}

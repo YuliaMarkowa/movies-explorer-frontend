@@ -39,4 +39,23 @@
     border: none;
     right: 6px;
     top: 6px;
+    padding: 0;
+}
+
+@media (max-width: 850px) {
+    .search-movie {
+        padding: 80px 30px 10px;
+    }
+}
+
+@media (max-width: 450px) {
+    .search-movie {
+        padding-left: 14px;
+        padding-right: 14px;
+    }
+
+    .search-movie__input {
+        font-size: 11px;
+        padding-left: 19px;
+    }
 }
