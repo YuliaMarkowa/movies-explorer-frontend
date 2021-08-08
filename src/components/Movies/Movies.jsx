@@ -4,13 +4,14 @@ import SearchForm from './SearchForm/SearchForm';
 import MoreButton from './MoreButton/MoreButton';
 
 function Movies() {
-    return(
-        <>
+    return (
+      <>
         <SearchForm />
         <MoviesCardList />
         <MoreButton />
-        </>
+      </>
     );
-}
-
-export default Movies;
+  };
+  
+  export default Movies;
+  

@@ -1,7 +1,14 @@
 import './Profile.css';
 import { Link } from 'react-router-dom';
+import { useState } from 'react';
 
 function Profile() {
+  const [isButtonActive, setIsButtonActive] = useState(false);
+
+  function toggleButton() {
+    setIsButtonActive(!isButtonActive);
+  }
+
   return (
     <section className="profile-page">
       <h1 className="profile-page__heading">Привет, Виталий!</h1>
@@ -28,18 +35,34 @@ function Profile() {
             required
           />
         </div>
-
-        <button type="submit" className="profile-page__edit-button">
-          Редактировать
-        </button>
       </form>
-      <Link to="/">
-        <button type="button" className="auth__logout-button">
-          Выйти из аккаунта
+      {!isButtonActive ? (
+        <>
+          <button
+            type="submit"
+            className="profile-page__edit-button"
+            onClick={toggleButton}
+          >
+            Редактировать
+          </button>
+          <Link to="/">
+            <button type="button" className="profile-page__logout-button">
+              Выйти из аккаунта
+            </button>
+          </Link>
+        </>
+      ) : (
+        <button
+          aria-label="Сохранить"
+          type="submit"
+          className="profile-page__save-button"
+        >
+          Сохранить
         </button>
-      </Link>
+      )}
     </section>
   );
 }
 
 export default Profile;
+

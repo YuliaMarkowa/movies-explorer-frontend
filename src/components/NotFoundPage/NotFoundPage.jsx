@@ -14,6 +14,6 @@ function NotFoundPage() {
         </button>
       </section>
     );
-  }
+  };
   
   export default NotFoundPage;

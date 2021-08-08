@@ -6,14 +6,15 @@ import Portfolio from './Portfolio/Portfolio'
 
 function Main() {
     return (
-        <>
+      <>
         <Promo />
         <AboutProject />
         <Techs />
         <AboutMe />
         <Portfolio />
-        </>
+      </>
     );
-}
-
-export default Main;
+  };
+  
+  export default Main;
+  

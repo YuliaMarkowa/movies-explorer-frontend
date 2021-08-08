@@ -1,4 +1,4 @@
-import AuthForm from "../AuthForm/AuthForm";
+import AuthForm from '../AuthForm/AuthForm';
 
 function Login() {
   return (
@@ -11,6 +11,6 @@ function Login() {
       pathContent="Регистрация"
     />
   );
-}
+};
 
 export default Login;

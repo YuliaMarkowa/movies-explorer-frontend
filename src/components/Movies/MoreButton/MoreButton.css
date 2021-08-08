@@ -1,31 +1,42 @@
+.more-button__container {
+    padding: 50px 70px 80px;
+    max-width: 1280px;
+    margin: 0 auto;
+    box-sizing: border-box;
+}
+
 .more-button {
-    display: block;
+    display: flex;
     background: #F9F9F9;
     min-height: 36px;
-    width: 1140px;
+    width: 100%;
     font-size: 12px;
     font-weight: 500;
-    margin: 0 auto;
+    justify-content: center;
+    align-items: center;
     color: #000;
-    margin-top: 50px;
-    margin-bottom: 80px;
     border: none;
     border-radius: 6px;
-    cursor: pointer;
-    transition: opacity 0.5s ease;
+    transition: opacity .5s ease;
     outline: none;
-    text-decoration: none;
     padding: 0;
 }
 
-@media (max-width: 1185px) {
-    .more-button {
-    max-width: 708px;
-}
+.more-button:hover {
+    opacity: .8;
+    cursor: pointer;
 }
 
-@media (max-width: 767px) {
-    .more-button {
-        max-width: 300px;
+@media (max-width: 850px) {
+    .more-button__container {
+       padding-left: 30px;
+       padding-right: 30px;
+    }
+}
+
+@media (max-width: 450px) {
+    .more-button__container {
+       padding-left: 10px;
+       padding-right: 10px;
     }
 }

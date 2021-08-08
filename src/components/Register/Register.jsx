@@ -1,4 +1,4 @@
-import AuthForm from "../AuthForm/AuthForm";
+import AuthForm from '../AuthForm/AuthForm';
 
 function Register() {
   return (
@@ -11,6 +11,6 @@ function Register() {
       pathContent="Войти"
     />
   );
-}
+};
 
 export default Register;

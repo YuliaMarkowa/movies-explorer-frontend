@@ -29,6 +29,6 @@ function AboutProject() {
         </section>
 
     );
-}
+};
 
 export default AboutProject;

@@ -13,7 +13,7 @@ function SearchForm() {
             className="search-movie__input"
             required
           />
-          <button type="submit" name="submit" className="search-movie__submit">
+          <button aria-label="Найти" type="submit" name="submit" className="search-movie__submit">
             Найти
           </button>
         </div>
@@ -21,6 +21,6 @@ function SearchForm() {
       </form>
     </section>
   );
-}
+};
 
 export default SearchForm;

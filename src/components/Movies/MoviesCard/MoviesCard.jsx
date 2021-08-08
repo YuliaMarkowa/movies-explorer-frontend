@@ -13,7 +13,7 @@ function MoviesCard() {
   const movieCardRemoveButton = "movie-card__button movie-card__button_remove";
 
   function handleClick() {
-    setIsSelected(!isSelected)
+    setIsSelected(!isSelected);
   }
 
   return (
@@ -22,26 +22,26 @@ function MoviesCard() {
       <div className="movie-card__main">
         <p className="movie-card__title">Книготорговцы</p>
         <Switch>
-          <Route path='/movies'>
-        <button
-          aria-label="Сохранить"
-          type="button"
-          className={movieCardSaveButton}
-          onClick={handleClick}
-        ></button>
-        </Route>
-        <Route path='/saved-movies'>
-        <button
-          aria-label="Удалить"
-          type="button"
-          className={movieCardRemoveButton}
-        ></button>
-        </Route>
+          <Route path="/movies">
+            <button
+              aria-label="Сохранить"
+              type="button"
+              className={movieCardSaveButton}
+              onClick={handleClick}
+            ></button>
+          </Route>
+          <Route path="/saved-movies">
+            <button
+              aria-label="Удалить"
+              type="button"
+              className={movieCardRemoveButton}
+            ></button>
+          </Route>
         </Switch>
       </div>
       <p className="movie-card__duration">1ч 42м</p>
     </article>
   );
-}
+};
 
 export default MoviesCard;

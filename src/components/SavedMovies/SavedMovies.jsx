@@ -1,14 +1,14 @@
-import './SavedMovies.css';
 import SearchForm from '../Movies/SearchForm/SearchForm';
 import MoviesCardList from '../Movies/MoviesCardList/MoviesCardList';
-
+import Devider from './Devider/Devider';
 function SavedMovies() {
-    return(
-        <>
+    return (
+      <>
         <SearchForm />
         <MoviesCardList />
-        </>
-    )
-}
-
-export default SavedMovies;
+        <Devider />
+      </>
+    );
+  };
+  
+  export default SavedMovies;

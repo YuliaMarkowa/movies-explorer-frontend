@@ -12,12 +12,12 @@
 }
 
 .header__logo {
-    transition: opacity .3s ease;
+    transition: transform .5s ease;
     margin: 18px 0;
 }
 
 .header__logo:hover {
-    opacity: 0.4;
+    transform: scale(1.2);
     cursor: pointer;
 }
 
@@ -36,7 +36,7 @@
 }
 
 .header__link:hover {
-    opacity: 0.5;
+    opacity: .7;
 }
 
 .header__link-container {
@@ -56,8 +56,7 @@
     margin-top: 21px;
     border: none;
     border-radius: 3px;
-    cursor: pointer;
-    transition: opacity 0.5s ease;
+    transition: transform .5s ease;
     outline: none;
     text-decoration: none;
     display: flex;
@@ -66,7 +65,8 @@
 }
 
 .header__button-enter:hover {
-    opacity: 0.5;
+    transform: scale(1.2);
+    cursor: pointer;
 }
 
 .header__menu {
@@ -85,8 +85,28 @@
     margin: 30px 0;
 }
 
+.header__menu-button {
+    background-image: url(../../images/menu-button.svg);
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-color: #FFF;
+    display: none;
+    width: 44px;
+    height: 44px;
+    border: none;
+    cursor: pointer;
+    margin-top: 15px;
+    transition: transform .3s ease;
+    padding: 0;
+}
+
+.header__menu-button:hover {
+    transform: scale(1.1);
+}
+
 .header__nav-movies:hover {
-    opacity: 0.3;
+    opacity: .7;
 }
 
 .header__nav-movies_saved {
@@ -126,11 +146,25 @@
     .header__menu {
         display: none;
     }
+
+    .header__menu-button {
+        display: block;
+        transition: opacity .3s ease;
+    }
+
+    .header__menu-button:hover {
+        opacity: .6;
+    }
 }
 
 @media (max-width: 450px) {
     .header__container { 
         padding: 0 14px;
+    }
+
+    .header__menu-button {
+        width: 40px;
+        height: 43px;
     }
 
     .header__link {

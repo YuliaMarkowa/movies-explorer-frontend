@@ -2,10 +2,12 @@ import './MoreButton.css';
 
 function MoreButton() {
   return (
-    <button type="button" className="more-button">
-      Ещё
-    </button>
+    <section className="more-button__container">
+      <button aria-label="Загрузить ещё" type="button" className="more-button">
+        Ещё
+      </button>
+    </section>
   );
-}
+};
 
 export default MoreButton;

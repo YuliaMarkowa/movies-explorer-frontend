@@ -1,4 +1,4 @@
-import "./Promo.css";
+import './Promo.css';
 
 function Promo() {
   return (
@@ -10,6 +10,6 @@ function Promo() {
       </div>
     </section>
   );
-}
+};
 
 export default Promo;

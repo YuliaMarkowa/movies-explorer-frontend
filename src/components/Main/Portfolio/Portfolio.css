@@ -36,6 +36,11 @@
   padding-bottom: 19px;
   padding-top: 40px;
   letter-spacing: -0.04em;
+  transition: opacity .5s ease;
+}
+
+.my-works__link:hover {
+    opacity: .7;
 }
 
 .my-works__link:nth-of-type(3) {
@@ -71,5 +76,5 @@
     .my-works__image {
         width: 17px;
         height: 16px;
-      }  
+      }
 }

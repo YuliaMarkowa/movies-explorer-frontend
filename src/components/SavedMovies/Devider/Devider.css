@@ -1,0 +1,10 @@
+.devider {
+    padding-bottom: 240px;
+    background: #FFF;
+}
+
+@media (max-width: 850px) {
+    .devider {
+        padding-bottom: 140px;
+    }
+}

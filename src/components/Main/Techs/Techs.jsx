@@ -1,4 +1,4 @@
-import "./Techs.css";
+import './Techs.css';
 
 function Techs() {
   return (
@@ -24,6 +24,6 @@ function Techs() {
       </div>
     </section>
   );
-}
+};
 
 export default Techs;

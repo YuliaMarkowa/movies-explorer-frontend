@@ -2,9 +2,14 @@ import './AuthForm.css';
 import { Link } from 'react-router-dom';
 import logo from '../../images/logo-header.svg';
 
-function AuthForm({ headingContent, submitContent, guessContent, pathContent, path, signUp }) {
-  //const { headingContent, submitContent, guessContent, pathContent } = content;
-
+function AuthForm({
+  headingContent,
+  submitContent,
+  guessContent,
+  pathContent,
+  path,
+  signUp,
+}) {
   return (
     <section className="auth">
       <Link to="/">
@@ -38,8 +43,10 @@ function AuthForm({ headingContent, submitContent, guessContent, pathContent, pa
               name="password"
               className="auth__input"
               id="password-input"
+              minLength="8"
               required
             />
+            <span className="auth__input-error">Что-то пошло не так...</span>
           </>
         ) : (
           <>
@@ -57,6 +64,7 @@ function AuthForm({ headingContent, submitContent, guessContent, pathContent, pa
               name="password"
               className="auth__input"
               id="password-input"
+              minLength="8"
               required
             />
           </>

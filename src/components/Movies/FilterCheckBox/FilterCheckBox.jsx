@@ -1,4 +1,4 @@
-import "./FilterCheckBox.css";
+import './FilterCheckBox.css';
 
 function FilterCheckBox() {
   return (
@@ -10,6 +10,6 @@ function FilterCheckBox() {
       <span className="switch__text">Короткометражки</span>
     </div>
   );
-}
+};
 
 export default FilterCheckBox;
