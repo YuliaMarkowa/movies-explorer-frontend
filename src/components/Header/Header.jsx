@@ -1,11 +1,18 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-//import Navigation from '../Navigation/Navigation';
+import { useState } from 'react';
 import './Header.css';
+import Navigation from '../Navigation/Navigation';
 import logo from '../../images/logo-header.svg';
 import user from '../../images/icon-main.svg';
 
-function Header({ loggedIn, onNavMenuActive }) {
+function Header({ loggedIn }) {
+  const [isNavMenuOpen, setIsNavMenuOpen] = useState(false);
+
+  function toggleNavMenu() {
+    setIsNavMenuOpen(!isNavMenuOpen);
+  }
+
   return (
     <header className={`header ${!loggedIn ? "header_dark" : ""}`}>
       <div className="header__container">
@@ -51,8 +58,9 @@ function Header({ loggedIn, onNavMenuActive }) {
               className="header__menu-button"
               aria-label="открыть меню"
               type="button"
-              onClick={onNavMenuActive}
+              onClick={toggleNavMenu}
             ></button>
+            <Navigation isOpen={isNavMenuOpen} onClose={toggleNavMenu} />
           </>
         )}
       </div>

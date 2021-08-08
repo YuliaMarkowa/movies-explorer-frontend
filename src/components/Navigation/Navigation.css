@@ -4,35 +4,27 @@
     right: 0;
     height: 100%;
     width: 68%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
     background-color:rgba(0, 0, 0, .3);
-    /*visibility: hidden;*/
+    visibility: hidden;
     opacity: 0;
-    transform: translateX(-100%);
-    transition: opacity .4s linear /*visibility 0.4s*/ linear;
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-start;
-    align-items: center;
+    transition: opacity .4s linear visibility 0.4s linear;
     z-index: 50;
 }
 
 .navigation-modal_opened {
-    /*visibility: visible;*/
-    transform: translateX(0);
-    transition: opacity .4s linear, /*visibility 0.4s*/ linear;
+    visibility: visible;
+    transition: opacity .4s linear, visibility 0.4s linear;
     opacity: 1;
-    padding-top: 159px;
 }
 
 .navigation-modal__main {
+    height: 100%;
+    padding-top: 159px;
     display: flex;
     flex-direction: column;
-    justify-content: center;
     align-items: center;
     position: relative;
+    background-color: #FFF;
 }
 
 .navigation-modal__links {
