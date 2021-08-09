@@ -4,11 +4,11 @@
 
 ## Ссылка на сгенерированный макет:
 
-https://disk.yandex.ru/d/0hw2xki53Z4iGQ
+Яндекс.Диск https://disk.yandex.ru/d/0hw2xki53Z4iGQ
 
 ## Ссылка на проект:
 
-
+https://yulia.diploma.nomoredomains.club
 
 ## Запустить проект:
 
