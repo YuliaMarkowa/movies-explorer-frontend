@@ -4,6 +4,8 @@
 
 ## Ссылка на сгенерированный макет:
 
+https://www.figma.com/file/CEVDBEl3nNE9nV45mznjvF/DiplomaYuliaMarkowa?node-id=891%3A3857
+
 Яндекс.Диск https://disk.yandex.ru/d/0hw2xki53Z4iGQ
 
 ## Ссылка на проект:
