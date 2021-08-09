@@ -2,8 +2,8 @@
     position: fixed;
     top: 0;
     right: 0;
-    height: 100%;
-    width: 68%;
+    height: 100vh;
+    width: 100vw;
     background-color:rgba(0, 0, 0, .3);
     visibility: hidden;
     opacity: 0;
@@ -19,6 +19,8 @@
 
 .navigation-modal__main {
     height: 100%;
+    left: 31%;
+    width: 69%;
     padding-top: 159px;
     display: flex;
     flex-direction: column;
@@ -101,6 +103,7 @@
     border: none;
     top: 22px;
     right: 22px;
+    padding: 0;
 }
 
 .navigation-modal__close-button:hover {
@@ -108,13 +111,10 @@
 }
 
 @media (max-width: 750px) {
-    .navigation-model__close-button {
+
+    .navigation-modal__close-button {
        top: 13px;
        right: 13px;
-    }
-
-    .navigation-modal {
-        width: 100%;
     }
 
     .navigation-modal__item {
@@ -123,5 +123,12 @@
 
     .navigation-modal__link-account {
         margin-top: 354px;
+    }
+}
+
+@media (max-width: 450px) {
+    .navigation-modal__main {
+        left: 0;
+        width: 100%;
     }
 }
