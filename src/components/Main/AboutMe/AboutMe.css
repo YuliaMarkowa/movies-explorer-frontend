@@ -1,0 +1,166 @@
+.myself {
+    background: #FFFFFF;
+}
+
+.myself__container {
+    padding: 0 70px;
+    max-width: 1280px;
+    margin: 0 auto;
+    box-sizing: border-box;
+}
+
+.myself__main {
+    display: flex;
+    justify-content: space-between;
+}
+
+.myself__title {
+    font-size: 22px;
+    font-weight: normal;
+    line-height: 1,2;
+    color: #000;
+    padding: 90px 0 23px;
+    border-bottom: 1px solid rgba(0, 0, 0);
+    margin: 0;
+    letter-spacing: -0.04em;
+}
+
+.myself__heading {
+    font-size: 50px;
+    font-weight: normal;
+    line-height: 1,2;
+    color: #000;
+    padding: 66px 0 18px;
+    margin: 0;
+    letter-spacing: -0.04em;
+}
+
+.myself__caption {
+    font-size: 18px;
+    font-weight: 500;
+    line-height: 1,1;
+    color: #000;
+    padding-bottom: 26px;
+    margin: 0;
+}
+
+.myself__text {
+    max-width: 600px;
+    margin-right: 20px;
+    font-size: 14px;
+    font-weight: normal;
+    line-height: 22px;
+    color: #000;
+    padding-bottom: 99px;
+    margin: 0;
+    margin-right: 15px;
+}
+
+.myself__avatar {
+    margin-top: 66px;
+    object-fit: cover;
+    width: 270px;
+    height: 327px;
+    border-radius: 10px;
+  }
+
+.myself__links {
+    padding-bottom: 100px;
+}
+
+.myself__link {
+    font-size: 14px;
+    font-weight: 500;
+    line-height: 1,2;
+    color: #000;
+    padding-bottom: 99px;
+    padding-right: 20px;
+    margin: 0;
+    text-decoration: none;
+    transition: opacity 0.5s ease;
+}
+
+.myself__link:hover {
+    opacity: .7;
+}
+
+@media (max-width: 850px) {
+    .myself__container {
+        padding: 0 50px;
+    }
+
+    .myself__heading {
+        font-size: 40px;
+        padding-bottom: 16px;
+    }
+
+    .myself__caption {
+        font-size: 12px;
+        padding-bottom: 20px;
+    }
+
+    .myself__text {
+        max-width: 364px;
+        font-size: 12px;
+        padding-bottom: 87px;
+        line-height: 18px;
+    }
+
+    .myself__avatar {
+        width: 255px;
+        height: 307px;
+      }
+
+      .myself__links {
+        padding-bottom: 91px;
+      }
+}
+
+@media (max-width: 615px) {
+    .myself__container {
+        padding: 0 14px;
+    }
+
+    .myself__main {
+        display: flex;
+        flex-direction: column-reverse;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .myself__title {
+        font-size: 18px;
+        padding: 70px 0 28px;
+    }
+
+    .myself__avatar {
+        margin-top: 60px;
+        width: 292px;
+        height: 352px;
+    }
+
+    .myself__heading {
+        font-size: 30px;
+        padding: 40px 0 20px;
+    }
+
+    .myself__caption {
+        font-size: 11px;
+    }
+    
+    .myself__text {
+        font-size: 11px;
+        padding-bottom: 40px;
+        line-height: 16px;
+        margin: 0;
+    }
+
+    .myself__link {
+        padding-right: 26px;
+        padding-bottom: 0;
+    }
+
+    .myself__links {
+        padding-bottom: 69px;
+      }
+}
