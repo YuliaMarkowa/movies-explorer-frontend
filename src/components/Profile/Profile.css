@@ -38,6 +38,19 @@
     text-align: right;
 }
 
+.profile-page__input::placeholder {
+    color: #000;
+  }
+
+.profile-page__input-error {
+    color: #EE3465;
+    font-size: 10px;
+    font-weight: normal;
+    line-height: 1,2;
+    margin-top: 6px;
+    place-self: flex-end;
+}
+
 .profile-page__text {
     font-size: 11px;
     font-weight: 500;
@@ -70,6 +83,11 @@
     padding: 0;
     margin-top: 220px;
     transition: opacity .5s ease;
+}
+
+.profile-page__edit-button_disabled {
+    color: #C2C2C2;
+    cursor: none;
 }
 
 .profile-page__edit-button:hover {
@@ -112,7 +130,7 @@
      cursor: pointer;
 }
 
-.auth__logout-button:hover {
+.profile-page__logout-button:hover {
     opacity: .8;
     cursor: pointer;
 }

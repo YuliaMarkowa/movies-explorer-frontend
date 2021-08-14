@@ -1,5 +1,8 @@
-import './AuthForm.css';
+import { useEffect } from 'react';
 import { Link } from 'react-router-dom';
+import useFormValidator from '../../hooks/useFormValidator';
+
+import './AuthForm.css';
 import logo from '../../images/logo-header.svg';
 
 function AuthForm({
@@ -9,14 +12,32 @@ function AuthForm({
   pathContent,
   path,
   signUp,
+  onSubmit,
 }) {
+  const { values, errors, isValid, handleChange, resetForm } =
+    useFormValidator();
+
+  function handleSubmit(evt) {
+    evt.preventDefault();
+    onSubmit(values);
+  }
+
+  useEffect(() => {
+    resetForm();
+  }, []);
+
   return (
     <section className="auth">
       <Link to="/">
         <img src={logo} alt="На главную страницу" className="auth__logo" />
       </Link>
       <h1 className="auth__heading">{headingContent}</h1>
-      <form className="auth__form" name="authForm">
+      <form
+        className="auth__form"
+        name="authForm"
+        onSubmit={handleSubmit}
+        noValidate
+      >
         {signUp ? (
           <>
             <label className="auth__text">Имя</label>
@@ -27,16 +48,22 @@ function AuthForm({
               id="name-input"
               minLength="2"
               maxLength="30"
+              value={values.name || ""}
+              onChange={handleChange}
               required
             />
+            <span className="auth__input-error">{errors.name || ""}</span>
             <label className="auth__text">E-mail</label>
             <input
               type="email"
               name="email"
               className="auth__input"
               id="email-input"
+              value={values.email || ""}
+              onChange={handleChange}
               required
             />
+            <span className="auth__input-error">{errors.email || ""}</span>
             <label className="auth__text">Пароль</label>
             <input
               type="password"
@@ -44,9 +71,11 @@ function AuthForm({
               className="auth__input"
               id="password-input"
               minLength="8"
+              value={values.password || ""}
+              onChange={handleChange}
               required
             />
-            <span className="auth__input-error">Что-то пошло не так...</span>
+            <span className="auth__input-error">{errors.password || ""}</span>
           </>
         ) : (
           <>
@@ -56,8 +85,11 @@ function AuthForm({
               name="email"
               className="auth__input"
               id="email-input"
+              value={values.email || ""}
+              onChange={handleChange}
               required
             />
+            <span className="auth__input-error">{errors.email || ""}</span>
             <label className="auth__text">Пароль</label>
             <input
               type="password"
@@ -65,11 +97,18 @@ function AuthForm({
               className="auth__input"
               id="password-input"
               minLength="8"
+              value={values.password || ""}
+              onChange={handleChange}
               required
             />
+            <span className="auth__input-error">{errors.password || ""}</span>
           </>
         )}
-        <button type="submit" className="auth__submit">
+        <button
+          type="submit"
+          className={`auth__submit ${!isValid ? "auth__submit_disabled" : ""}`}
+          disabled={!isValid}
+        >
           {submitContent}
         </button>
       </form>
