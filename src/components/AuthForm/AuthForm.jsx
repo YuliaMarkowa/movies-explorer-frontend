@@ -1,6 +1,7 @@
 import { useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import useFormValidator from '../../hooks/useFormValidator';
+import Preloader from '../Preloader/Preloader';
 
 import './AuthForm.css';
 import logo from '../../images/logo-header.svg';
@@ -13,6 +14,8 @@ function AuthForm({
   path,
   signUp,
   onSubmit,
+  isLoading,
+  serverErrorMessage
 }) {
   const { values, errors, isValid, handleChange, resetForm } =
     useFormValidator();
@@ -38,79 +41,94 @@ function AuthForm({
         onSubmit={handleSubmit}
         noValidate
       >
-        {signUp ? (
-          <>
-            <label className="auth__text">Имя</label>
-            <input
-              type="text"
-              name="name"
-              className="auth__input"
-              id="name-input"
-              minLength="2"
-              maxLength="30"
-              value={values.name || ""}
-              onChange={handleChange}
-              required
-            />
-            <span className="auth__input-error">{errors.name || ""}</span>
-            <label className="auth__text">E-mail</label>
-            <input
-              type="email"
-              name="email"
-              className="auth__input"
-              id="email-input"
-              value={values.email || ""}
-              onChange={handleChange}
-              required
-            />
-            <span className="auth__input-error">{errors.email || ""}</span>
-            <label className="auth__text">Пароль</label>
-            <input
-              type="password"
-              name="password"
-              className="auth__input"
-              id="password-input"
-              minLength="8"
-              value={values.password || ""}
-              onChange={handleChange}
-              required
-            />
-            <span className="auth__input-error">{errors.password || ""}</span>
-          </>
+        {isLoading ? (
+          <Preloader />
         ) : (
           <>
-            <label className="auth__text">E-mail</label>
-            <input
-              type="email"
-              name="email"
-              className="auth__input"
-              id="email-input"
-              value={values.email || ""}
-              onChange={handleChange}
-              required
-            />
-            <span className="auth__input-error">{errors.email || ""}</span>
-            <label className="auth__text">Пароль</label>
-            <input
-              type="password"
-              name="password"
-              className="auth__input"
-              id="password-input"
-              minLength="8"
-              value={values.password || ""}
-              onChange={handleChange}
-              required
-            />
-            <span className="auth__input-error">{errors.password || ""}</span>
+            {signUp ? (
+              <>
+                <label className="auth__text">Имя</label>
+                <input
+                  type="text"
+                  name="name"
+                  className="auth__input"
+                  id="name-input"
+                  minLength="2"
+                  maxLength="30"
+                  value={values.name || ""}
+                  onChange={handleChange}
+                  required
+                />
+                <span className="auth__input-error">{errors.name || ""}</span>
+                <label className="auth__text">E-mail</label>
+                <input
+                  type="email"
+                  name="email"
+                  className="auth__input"
+                  id="email-input"
+                  value={values.email || ""}
+                  onChange={handleChange}
+                  required
+                />
+                <span className="auth__input-error">{errors.email || ""}</span>
+                <label className="auth__text">Пароль</label>
+                <input
+                  type="password"
+                  name="password"
+                  className="auth__input"
+                  id="password-input"
+                  minLength="8"
+                  value={values.password || ""}
+                  onChange={handleChange}
+                  required
+                />
+                <span className="auth__input-error">
+                  {errors.password || ""}
+                </span>
+              </>
+            ) : (
+              <>
+                <label className="auth__text">E-mail</label>
+                <input
+                  type="email"
+                  name="email"
+                  className="auth__input"
+                  id="email-input"
+                  value={values.email || ""}
+                  onChange={handleChange}
+                  required
+                />
+                <span className="auth__input-error">{errors.email || ""}</span>
+                <label className="auth__text">Пароль</label>
+                <input
+                  type="password"
+                  name="password"
+                  className="auth__input"
+                  id="password-input"
+                  minLength="8"
+                  value={values.password || ""}
+                  onChange={handleChange}
+                  required
+                />
+                <span className="auth__input-error">
+                  {errors.password || ""}
+                </span>
+              </>
+            )}
+            <div className="auth__submit-container">
+            <span className="auth__server-error">{serverErrorMessage}</span>
+            <button
+              type="submit"
+              className={`auth__submit ${
+                !isValid ? "auth__submit_disabled" : ""
+              }`}
+              disabled={!isValid}
+            >
+              {submitContent}
+            </button>
+            </div>
           </>
         )}
-        <button
-          type="submit"
-          className={`auth__submit ${!isValid ? "auth__submit_disabled" : ""}`}
-          disabled={!isValid}
-        >
-          {submitContent}
-        </button>
       </form>
       <p className="auth__caption">
         {guessContent}

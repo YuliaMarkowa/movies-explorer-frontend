@@ -1,6 +1,6 @@
 import AuthForm from '../AuthForm/AuthForm';
 
-function Login({ onLogin }) {
+function Login({ onLogin, serverErrorMessage }) {
   return (
     <AuthForm
       signUp={false}
@@ -10,6 +10,7 @@ function Login({ onLogin }) {
       path='/signup'
       pathContent='Регистрация'
       onSubmit={onLogin}
+      serverErrorMessage={serverErrorMessage}
     />
   );
 };

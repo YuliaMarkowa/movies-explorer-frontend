@@ -11,74 +11,65 @@ import Movies from '../Movies/Movies';
 import Footer from '../Footer/Footer';
 import SavedMovies from '../SavedMovies/SavedMovies';
 import Profile from '../Profile/Profile';
-import Register from '../Register/Register'
+import Register from '../Register/Register';
 import Login from '../Login/Login';
-import NotFoundPage from '../NotFoundPage/NotFoundPage'
+import NotFoundPage from '../NotFoundPage/NotFoundPage';
+import ProtectedRoute from '../ProtectedRoute/ProtectedRoute';
 
 function App() {
   const history = useHistory();
   const [currentUser, setCurrentUser] = useState({});
+  const [serverErrorMessage, setServerErrorMessage] = useState('');
+  const [isLoading, setIsLoading] = useState(false);
+  const [loggedIn, setLoggedIn] = useState(false);
+
+  function handleServerErorr(err) {
+    setServerErrorMessage(err);
+  }
+
 
   function handleRegister(name, email, password) {
+    setIsLoading(true);
     auth
       .register(name, email, password)
       .then(() => {
-        history.push("/signin");
+        history.push('/signin');
       })
       .catch((err) => {
-        console.log(err);
+        handleServerErorr(err);
+      })
+      .finally(() => {
+        setIsLoading(false);
       });
   }
-  
+
   function handleLogin(email, password) {
+    setIsLoading(true);
     auth
       .authorize(email, password)
       .then((res) => {
-        localStorage.setItem("jwt", res.token);
+        setLoggedIn(true);
+        localStorage.setItem('jwt', res.token);
         checkUserToken();
-        history.push("/movies");
+        history.push('/movies');
       })
       .catch((err) => {
-        console.log(err);
+        handleServerErorr(err);
+      })
+      .finally(() => {
+        setIsLoading(false);
       });
   }
 
-  useEffect(() => {
-      mainApi
-        .loadUserInfo()
-        .then(({ name, email }) => {
-          setCurrentUser({ name, email });
-        })
-        .catch((err) => {
-          console.log(err);
-        });
-  }, []);
-
-  function handleUpdateUser({ name, email }) {
-    mainApi
-      .editProfile({ name, email })
-      .then((user) => {
-        setCurrentUser(user);
-      })
-      .catch((err) => {
-        console.log(err);
-      })
-  }
-
-  function handleLogOut() {
-    localStorage.clear();
-    history.push("/");
-  }
-
   function checkUserToken() {
-    const token = localStorage.getItem("jwt");
+    const token = localStorage.getItem('jwt');
     if (token) {
       auth
         .getContent(token)
         .then((res) => {
-          console.log(res);
           if (res) {
-            history.push("/movies");
+            setLoggedIn(true);
+            history.push('/movies');
           }
         })
         .catch((err) => {
@@ -86,61 +77,137 @@ function App() {
         });
     }
   }
-  
+
+  function handleUpdateUser({ name, email }) {
+    setIsLoading(true);
+    mainApi
+      .editProfile({ name, email })
+      .then((user) => {
+        setCurrentUser(user);
+      })
+      .catch((err) => {
+        handleServerErorr(err);
+      })
+      .finally(() => {
+        setIsLoading(false);
+      });
+  }
+
+  function handleLogOut() {
+    setLoggedIn(false);
+    localStorage.clear();
+    history.push('/');
+  }
+
+  useEffect(() => {
+    if(loggedIn) {
+    mainApi
+      .loadUserInfo()
+      .then(({ name, email }) => {
+        setCurrentUser({ name, email });
+      })
+      .catch((err) => {
+        handleServerErorr(err);
+      });
+    }
+  }, [loggedIn]);
+
   useEffect(() => {
     checkUserToken();
   }, []);
+
+  const MoviesContent = ({ loggedIn }) => (
+    <>
+      <Header loggedIn={loggedIn} />
+      <Movies />
+      <Footer />
+    </>
+  );
   
+  const SavedMoviesContent = ({ loggedIn }) => (
+    <>
+      <Header loggedIn={loggedIn} />
+      <SavedMovies />
+      <Footer />
+    </>
+  );
   
-   
+  const ProfileContent = ({
+    loggedIn,
+    handleLogOut,
+    handleUpdateUser,
+    isLoading,
+    serverErrorMessage
+  }) => (
+    <>
+      <Header loggedIn={loggedIn} />
+      <Profile
+        handleLogOut={handleLogOut}
+        handleUpdateUser={handleUpdateUser}
+        isLoading={isLoading}
+        serverErrorMessage={serverErrorMessage}
+      />
+    </>
+  );
 
   return (
-  <CurrentUserContext.Provider value={currentUser}>
-    <div className="page">
-      <Switch>
-        <Route exact path="/">
-          <Header loggedIn={false} />
-          <Main />
-          <Footer />
-        </Route>
+    <CurrentUserContext.Provider value={currentUser}>
+      <div className="page">
+        <Switch>
+          <Route exact path='/'>
+            <Header loggedIn={loggedIn} />
+            <Main />
+            <Footer />
+          </Route>
 
-        <Route path="/movies">
-          <Header loggedIn={true} />
-          <Movies />
-          <Footer />
-        </Route>
-
-        <Route path="/saved-movies">
-          <Header loggedIn={true} />
-          <SavedMovies />
-          <Footer />
-        </Route>
-
-        <Route path="/profile">
-          <Header loggedIn={true} />
-          <Profile onSignOut={handleLogOut} onUpdateUser={handleUpdateUser}/>
-        </Route>
-
-        <Route path="/signup">
-          <Register
-          onRegister={handleRegister}
+          <ProtectedRoute
+            path='/movies'
+            exact
+            component={MoviesContent}
+            loggedIn={loggedIn}
           />
-        </Route>
 
-        <Route path="/signin">
-          <Login
-          onLogin={handleLogin}
-          
+          <ProtectedRoute
+            path='/saved-movies'
+            exact
+            component={SavedMoviesContent}
+            loggedIn={loggedIn}
           />
-        </Route>
 
-        <Route path="/*">
-          <NotFoundPage />
-        </Route>
-      </Switch>
-    </div>
-  </CurrentUserContext.Provider>
+          <ProtectedRoute
+            path='/profile'
+            exact
+            component={ProfileContent}
+            handleLogOut={handleLogOut}
+            handleUpdateUser={handleUpdateUser}
+            isLoading={isLoading}
+            loggedIn={loggedIn}
+            serverErrorMessage={serverErrorMessage}
+          />
+
+          <Route path='/signup'>
+            <Register 
+              onRegister={handleRegister} 
+              isLoading={isLoading} 
+              serverErrorMessage={serverErrorMessage} />
+          </Route>
+
+          <Route path='/signin'>
+            <Login
+              onLogin={handleLogin}
+              isLoading={isLoading}
+              loggedIn={loggedIn}
+              serverErrorMessage={serverErrorMessage}
+            />
+          </Route>
+
+          <Route path='/*'>
+            <NotFoundPage />
+          </Route>
+        </Switch>
+      </div>
+    </CurrentUserContext.Provider>
   );
-};
+}
 
 export default App;

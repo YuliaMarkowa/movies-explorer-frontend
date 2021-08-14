@@ -51,6 +51,21 @@
     place-self: flex-end;
 }
 
+.profile-page__edit-button-container {
+    display: flex;
+    flex-direction: column;
+    margin-top: 176px;
+}
+
+.profile-page__server-error {
+    margin-bottom: 20px;
+    display: block;
+    color: #EE3465;
+    font-size: 11px;
+    line-height: 13px;
+    text-align: center;
+}
+
 .profile-page__text {
     font-size: 11px;
     font-weight: 500;
@@ -81,7 +96,7 @@
     background: transparent;
     border: none;
     padding: 0;
-    margin-top: 220px;
+    
     transition: opacity .5s ease;
 }
 
@@ -136,7 +151,7 @@
 }
 
 @media (max-width: 850px) {
-    .profile-page__edit-button {
+    .profile-page__edit-button-container {
         margin-top: 210px;
     }
 }
