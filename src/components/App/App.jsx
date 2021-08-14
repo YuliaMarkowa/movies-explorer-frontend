@@ -27,6 +27,9 @@ function App() {
     setServerErrorMessage(err);
   }
 
+  function resetServerErorr() {
+    setServerErrorMessage('');
+  }
 
   function handleRegister(name, email, password) {
     setIsLoading(true);
@@ -137,7 +140,8 @@ function App() {
     handleLogOut,
     handleUpdateUser,
     isLoading,
-    serverErrorMessage
+    serverErrorMessage,
+    resetServerErorr
   }) => (
     <>
       <Header loggedIn={loggedIn} />
@@ -146,6 +150,7 @@ function App() {
         handleUpdateUser={handleUpdateUser}
         isLoading={isLoading}
         serverErrorMessage={serverErrorMessage}
+        resetServerErorr={resetServerErorr}
       />
     </>
   );
@@ -183,13 +188,16 @@ function App() {
             isLoading={isLoading}
             loggedIn={loggedIn}
             serverErrorMessage={serverErrorMessage}
+            resetServerErorr={resetServerErorr}
           />
 
           <Route path='/signup'>
             <Register 
               onRegister={handleRegister} 
               isLoading={isLoading} 
-              serverErrorMessage={serverErrorMessage} />
+              serverErrorMessage={serverErrorMessage} 
+              resetServerErorr={resetServerErorr}
+            />
           </Route>
 
           <Route path='/signin'>
@@ -198,6 +206,7 @@ function App() {
               isLoading={isLoading}
               loggedIn={loggedIn}
               serverErrorMessage={serverErrorMessage}
+              resetServerErorr={resetServerErorr}
             />
           </Route>
 

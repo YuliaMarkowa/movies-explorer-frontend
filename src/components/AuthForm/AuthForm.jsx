@@ -15,7 +15,8 @@ function AuthForm({
   signUp,
   onSubmit,
   isLoading,
-  serverErrorMessage
+  serverErrorMessage,
+  resetServerErorr
 }) {
   const { values, errors, isValid, handleChange, resetForm } =
     useFormValidator();
@@ -27,6 +28,7 @@ function AuthForm({
 
   useEffect(() => {
     resetForm();
+    resetServerErorr();
   }, []);
 
   return (
@@ -115,18 +117,18 @@ function AuthForm({
                 </span>
               </>
             )}
-            <div className="auth__submit-container">
-            <span className="auth__server-error">{serverErrorMessage}</span>
-            <button
-              type="submit"
-              className={`auth__submit ${
-                !isValid ? "auth__submit_disabled" : ""
-              }`}
-              disabled={!isValid}
-            >
-              {submitContent}
-            </button>
-            </div>
+              <div className="auth__submit-container">
+                <span className="auth__server-error">{serverErrorMessage}</span>
+                <button
+                  type="submit"
+                  className={`auth__submit ${
+                    !isValid ? "auth__submit_disabled" : ""
+                  }`}
+                  disabled={!isValid}
+                >
+                  {submitContent}
+                </button>
+              </div>
           </>
         )}
       </form>
