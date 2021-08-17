@@ -1,27 +1,16 @@
 import MoviesCard from '../MoviesCard/MoviesCard';
 import './MoviesCardList.css';
 
-function MoviesCardList() {
-    return (
-      <div className="movies__list">
-        <MoviesCard />
-        <MoviesCard />
-        <MoviesCard />
-        <MoviesCard />
-        <MoviesCard />
-        <MoviesCard />
-        <MoviesCard />
-        <MoviesCard />
-        <MoviesCard />
-        <MoviesCard />
-        <MoviesCard />
-        <MoviesCard />
-        <MoviesCard />
-        <MoviesCard />
-        <MoviesCard />
-        <MoviesCard />
-      </div>
-    );
-  };
-  
-  export default MoviesCardList;
+function MoviesCardList({ movies }) {
+  return (
+    <ul className="movies__list">
+      {movies?.map((movie) => (
+        <li key={movie.id}>
+          <MoviesCard movie={movie} />
+        </li>
+      ))}
+    </ul>
+  );
+}
+
+export default MoviesCardList;

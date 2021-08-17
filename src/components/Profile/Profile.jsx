@@ -4,7 +4,13 @@ import useFormValidator from '../../hooks/useFormValidator';
 import Preloader from '../Preloader/Preloader';
 import './Profile.css';
 
-function Profile({ handleLogOut, handleUpdateUser, isLoading, serverErrorMessage, resetServerErorr }) {
+function Profile({
+  handleLogOut,
+  handleUpdateUser,
+  isLoading,
+  serverErrorMessage,
+  resetServerErorr,
+}) {
   const { name, email } = useContext(CurrentUserContext);
 
   const { values, setValues, errors, isValid, handleChange } =
@@ -72,30 +78,32 @@ function Profile({ handleLogOut, handleUpdateUser, isLoading, serverErrorMessage
             <span className="profile-page__input-error">
               {errors.email || ""}
             </span>
-              <div className="profile-page__edit-button-container">
-                <span className="profile-page__server-error">{serverErrorMessage}</span>
-                <button
-                  type="submit"
-                  className={`profile-page__edit-button ${
-                    !isValid ? "profile-page__edit-button_disabled" : ""
-                  }`}
-                  disabled={
-                    !isValid || (values.name === name && values.email === email)
-                  }
-                >
-                  Редактировать
-                </button>
-              </div>
+            <div className="profile-page__edit-button-container">
+              <span className="profile-page__server-error">
+                {serverErrorMessage}
+              </span>
+              <button
+                type="submit"
+                className={`profile-page__edit-button ${
+                  !isValid ? "profile-page__edit-button_disabled" : ""
+                }`}
+                disabled={
+                  !isValid || (values.name === name && values.email === email)
+                }
+              >
+                Редактировать
+              </button>
+            </div>
+            <button
+              type="button"
+              className="profile-page__logout-button"
+              onClick={handleLogOut}
+            >
+              Выйти из аккаунта
+            </button>
           </>
         )}
       </form>
-      <button
-        type="button"
-        className="profile-page__logout-button"
-        onClick={handleLogOut}
-      >
-        Выйти из аккаунта
-      </button>
     </section>
   );
 }
