@@ -1,6 +1,13 @@
 import './FilterCheckBox.css';
+import{setLocalStorage} from '../../helpers/helperLocalStorage';
 
-function FilterCheckBox({ isChecked, onClick }) {
+function FilterCheckBox({isChecked, setIsChecked}) {
+
+  function changeIsCheked(event) {
+        setIsChecked(event.target.checked);
+        setLocalStorage('isChecked', event.target.checked);
+  }
+
   return (
     <div className="switch">
       <label className="switch__container">
@@ -8,7 +15,7 @@ function FilterCheckBox({ isChecked, onClick }) {
           type="checkbox" 
           className="switch__input"
           checked={isChecked}
-          onChange={onClick}
+          onChange={changeIsCheked}
          />
         <span className="switch__slider" />
       </label>

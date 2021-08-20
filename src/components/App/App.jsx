@@ -115,6 +115,18 @@ function App() {
     }
   }, [loggedIn]);
 
+  /* загрузка сохраненных фильмов идут вместе с данными пользователя в юзЭф
+  mainApi
+  .getSaveMoviesCards()
+  .then(movies) => {
+    setSaveMovie(movies)
+  }
+  .catch((err) => {
+        handleServerErorr(err);
+      });
+  
+  */
+
   useEffect(() => {
     checkUserToken();
   }, []);

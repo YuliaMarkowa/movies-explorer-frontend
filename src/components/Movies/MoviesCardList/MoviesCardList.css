@@ -1,5 +1,5 @@
 .movies__list {
-    padding: 70px 70px 10px;
+    padding: 10px 70px 10px;
     max-width: 1280px;
     min-height: 140px;
     margin: 0 auto;
@@ -9,6 +9,19 @@
     place-content: center;
     box-sizing: border-box;
     list-style: none;
+}
+
+.movies__list-empty {
+    text-align: center;
+    color: #EE3465;
+    font-size: 14px;
+    line-height: 1.8;
+    width: 50%;
+    height: 50%;
+    margin: auto;
+    left: 0;
+    right: 0;
+    z-index: 999;
 }
 
 @media (max-width: 850px) {

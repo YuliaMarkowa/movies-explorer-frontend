@@ -6,9 +6,10 @@
 .movie-card__main {
     display: flex;
     justify-content: space-between;
-    align-items: center;
+    /*align-items: center;*/
     border-bottom: 1px solid rgba(232, 232, 232, 1);
-    padding: 12px 0 29px;
+    padding: 12px 0 5px;
+    height: 43px;
 }
 
 .movie-card__title {
@@ -59,9 +60,9 @@
         height: 190px;
     }
 
-    .movie-card__main {
+    /*.movie-card__main {
         padding-top: 14px;
-    }
+    }*/
 }
 
 @media (max-width: 450px) {
@@ -80,6 +81,6 @@
     }
 
     .movie-card__main {
-        padding-top: 15px;
+        padding-top: 7px;
     }
 }

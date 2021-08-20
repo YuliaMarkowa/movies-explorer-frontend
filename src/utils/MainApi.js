@@ -61,7 +61,7 @@ class MainApi {
   }
 //удаляем карточку из сохраненных и кнопка лайк на странице фильмы снова становится без заливки
   removeMovieCard(movieId) {
-    return fetch(`${this._baseUrl}/moviess/${movieId}`, {
+    return fetch(`${this._baseUrl}/movies/${movieId}`, {
       method: "DELETE",
       headers: {
         "Content-Type": "application/json",

@@ -9,7 +9,7 @@ function AboutMe() {
         <div className="myself__main">
           <div className="myself__info">
             <h3 className="myself__heading">Юля</h3>
-            <p className="myself__caption">Фронтенд-разработчик, 32 года</p>
+            <p className="myself__caption">Фронтенд-разработчик</p>
             <p className="myself__text">
               Я начала заниматься разработкой, не имея никакого опыта. Слушаю
               музыку на виниле. По образованию я инженер.

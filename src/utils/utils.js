@@ -1,18 +1,18 @@
-import { SHORT_FILM } from "../components/helpers/constants";
+import { SHORT_FILM, MINUTES_IN_HOUR, NIL } from "../components/helpers/constants";
 
 export function formatDuration(duration) {
-    const hours = Math.trunc(duration / 60);
-    const minutes = duration % 60;
+    const hours = Math.trunc(duration / MINUTES_IN_HOUR);
+    const minutes = duration % MINUTES_IN_HOUR;
   
-    return `${hours > 0 ? `${hours}ч` : ''} ${minutes}м`;
+    return `${hours > NIL ? `${hours}ч` : ''} ${minutes}м`;
   };
 
- export function searchFilm(movies, word) {
-   return movies.filter((movie) => {
-      return movie.nameRU.toLowerCase().includes(word);
-   });
- };
+ export function findFilm(movies, word) {
+  return movies
+      .filter(movie => movie.nameRU.toLowerCase().includes(word.toLowerCase()) ?? movie.nameEN.toLowerCase().includes(word.toLowerCase()))
+};
 
- export function filterDuration(movies) {
-   return movies.filter((movie) => movie.duration < SHORT_FILM);
+ export function filterFilmDuration(movies) {
+   return movies.filter(movie => movie.duration <= SHORT_FILM);
  };
+ 
