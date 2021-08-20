@@ -1,6 +1,6 @@
 import AuthForm from '../AuthForm/AuthForm';
 
-function Register({ onRegister, serverErrorMessage, resetServerErorr }) {
+function Register({ onRegister, serverErrorMessage, resetServerErorr, isLoading }) {
   return (
     <AuthForm
       signUp={true}
@@ -10,6 +10,7 @@ function Register({ onRegister, serverErrorMessage, resetServerErorr }) {
       path='/signin'
       pathContent='Войти'
       onSubmit={onRegister}
+      disabled={isLoading}
       serverErrorMessage={serverErrorMessage}
       resetServerErorr={resetServerErorr}
     />

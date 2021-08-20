@@ -1,4 +1,4 @@
-import { SHORT_FILM, MINUTES_IN_HOUR, NIL } from "../components/helpers/constants";
+import { SHORT_FILM, MINUTES_IN_HOUR, NIL } from '../components/helpers/constants';
 
 export function formatDuration(duration) {
     const hours = Math.trunc(duration / MINUTES_IN_HOUR);

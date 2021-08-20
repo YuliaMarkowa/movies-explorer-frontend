@@ -1,6 +1,6 @@
 import AuthForm from '../AuthForm/AuthForm';
 
-function Login({ onLogin, serverErrorMessage, resetServerErorr }) {
+function Login({ onLogin, serverErrorMessage, resetServerErorr, isLoading }) {
   return (
     <AuthForm
       signUp={false}
@@ -9,6 +9,7 @@ function Login({ onLogin, serverErrorMessage, resetServerErorr }) {
       guessContent='Ещё не зарегистрированы?'
       path='/signup'
       pathContent='Регистрация'
+      disabled={isLoading}
       onSubmit={onLogin}
       serverErrorMessage={serverErrorMessage}
       resetServerErorr={resetServerErorr}

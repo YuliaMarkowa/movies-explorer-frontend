@@ -1,7 +1,7 @@
 @import url(./vendor/normalize.css);
 @import url(./vendor/fonts/inter.css);
 
-.page {
+body {
     font-family: "Inter", "Arial", sans-serif;
     text-rendering: optimizeLegibility;
     -webkit-font-smoothing: antialiased;

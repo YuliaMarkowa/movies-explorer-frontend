@@ -32,7 +32,7 @@
     width: 24px;
     height: 24px;
     background: #F9F9F9;
-    background-image: url(../../../images/save-button.svg);
+    background-image: url(../../../../images/save-button.svg);
     border-radius: 36px;
     background-position: center;
     background-repeat: no-repeat;
@@ -47,11 +47,11 @@
 }
 
 .movie-card__button_save-active {
-    background-image: url(../../../images/save-button-active.svg);
+    background-image: url(../../../../images/save-button-active.svg);
 }
 
 .movie-card__button_remove {
-    background-image: url(../../../images/remove-button.svg);
+    background-image: url(../../../../images/remove-button.svg);
 }
 
 @media (max-width: 850px) {

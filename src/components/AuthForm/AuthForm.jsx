@@ -2,7 +2,6 @@ import { useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import useFormValidator from '../../hooks/useFormValidator';
 import Preloader from '../Preloader/Preloader';
-
 import './AuthForm.css';
 import logo from '../../images/logo-header.svg';
 
@@ -16,7 +15,7 @@ function AuthForm({
   onSubmit,
   isLoading,
   serverErrorMessage,
-  resetServerErorr
+  resetServerErorr,
 }) {
   const { values, errors, isValid, handleChange, resetForm } =
     useFormValidator();
@@ -59,6 +58,7 @@ function AuthForm({
                   maxLength="30"
                   value={values.name || ""}
                   onChange={handleChange}
+                  disabled={isLoading}
                   required
                 />
                 <span className="auth__input-error">{errors.name || ""}</span>
@@ -70,6 +70,7 @@ function AuthForm({
                   id="email-input"
                   value={values.email || ""}
                   onChange={handleChange}
+                  disabled={isLoading}
                   required
                 />
                 <span className="auth__input-error">{errors.email || ""}</span>
@@ -82,6 +83,7 @@ function AuthForm({
                   minLength="8"
                   value={values.password || ""}
                   onChange={handleChange}
+                  disabled={isLoading}
                   required
                 />
                 <span className="auth__input-error">
@@ -98,6 +100,7 @@ function AuthForm({
                   id="email-input"
                   value={values.email || ""}
                   onChange={handleChange}
+                  disabled={isLoading}
                   required
                 />
                 <span className="auth__input-error">{errors.email || ""}</span>
@@ -110,6 +113,7 @@ function AuthForm({
                   minLength="8"
                   value={values.password || ""}
                   onChange={handleChange}
+                  disabled={isLoading}
                   required
                 />
                 <span className="auth__input-error">

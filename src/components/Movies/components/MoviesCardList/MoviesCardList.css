@@ -9,19 +9,15 @@
     place-content: center;
     box-sizing: border-box;
     list-style: none;
+    position: relative;
 }
 
 .movies__list-empty {
-    text-align: center;
+    position: absolute;
+    left: 45%;
+    font-size: 13px;
+    line-height: 16px;
     color: #EE3465;
-    font-size: 14px;
-    line-height: 1.8;
-    width: 50%;
-    height: 50%;
-    margin: auto;
-    left: 0;
-    right: 0;
-    z-index: 999;
 }
 
 @media (max-width: 850px) {
@@ -33,6 +29,10 @@
         grid-template-columns: repeat(auto-fill, 339px);
         gap: 30px 30px;
     }
+
+    .movies__list-empty {
+        left: 43%;
+    }
 }
 
 @media (max-width: 450px) {
@@ -42,5 +42,9 @@
         display: grid;
         grid-template-columns: repeat(auto-fill, 300px);
         column-gap: 34px;
+    }
+
+    .movies__list-empty {
+        left: 33%;
     }
 }

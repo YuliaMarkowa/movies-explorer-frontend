@@ -1,4 +1,4 @@
-import { MOVIES_API_URL } from "../config/config";
+import { MOVIES_API_URL } from '../config/config';
 
 class MoviesApi {
   constructor({ baseUrl }) {
@@ -11,7 +11,7 @@ class MoviesApi {
     }
     return Promise.reject(`Ошибка ${res.status}`);
   }
-//загружаем карточки с сервера после запроса
+
   loadMovies() {
     return fetch(`${this._baseUrl}/beatfilm-movies`)
       .then(this._checkResponse);

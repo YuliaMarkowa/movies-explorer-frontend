@@ -1,5 +1,7 @@
 .footer {
     background: #FAFAFA;
+    /*align-self: flex-end;
+    min-width: 100%;*/
 }
 
 .footer__container {
