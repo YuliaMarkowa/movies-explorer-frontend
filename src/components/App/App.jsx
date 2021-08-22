@@ -4,6 +4,8 @@ import { Switch, Route, useHistory } from 'react-router-dom';
 import { CurrentUserContext } from '../../contexts/CurrentUserContext';
 import auth from '../../utils/auth';
 import mainApi from '../../utils/MainApi';
+import { setLocalStorage } from '../helpers/helperLocalStorage';
+import { SUCCESS_MESSAGE } from '../helpers/constants';
 
 import Header from '../Header/Header';
 import Main from '../Main/Main';
@@ -15,6 +17,7 @@ import Register from '../Register/Register';
 import Login from '../Login/Login';
 import NotFoundPage from '../NotFoundPage/NotFoundPage';
 import ProtectedRoute from '../ProtectedRoute/ProtectedRoute';
+import Preloader from '../Preloader/Preloader';
 
 function App() {
   const history = useHistory();
@@ -22,6 +25,8 @@ function App() {
   const [serverErrorMessage, setServerErrorMessage] = useState('');
   const [isLoading, setIsLoading] = useState(false);
   const [loggedIn, setLoggedIn] = useState(false);
+  const [successText, setSuccessText] = useState('');
+  const [isCheckUserToken, setIsCheckUserToken] = useState(true);
 
   function handleServerErorr(err) {
     setServerErrorMessage(err);
@@ -31,12 +36,12 @@ function App() {
     setServerErrorMessage('');
   }
 
-  function handleRegister(name, email, password) {
+  function handleRegister({name, email, password}) {
     setIsLoading(true);
     auth
-      .register(name, email, password)
+      .register({name, email, password})
       .then(() => {
-        history.push('/signin');
+        handleLogin({email, password});
       })
       .catch((err) => {
         handleServerErorr(err);
@@ -46,10 +51,10 @@ function App() {
       });
   }
 
-  function handleLogin(email, password) {
+  function handleLogin({email, password}) {
     setIsLoading(true);
     auth
-      .authorize(email, password)
+      .authorize({email, password})
       .then((res) => {
         setLoggedIn(true);
         localStorage.setItem('jwt', res.token);
@@ -72,12 +77,13 @@ function App() {
         .then((res) => {
           if (res) {
             setLoggedIn(true);
-            history.push('/movies');
           }
         })
         .catch((err) => {
           console.log(err);
-        });
+        })
+    } else {
+      setIsCheckUserToken(false);
     }
   }
 
@@ -87,6 +93,7 @@ function App() {
       .editProfile({ name, email })
       .then((user) => {
         setCurrentUser(user);
+        setSuccessText(SUCCESS_MESSAGE)
       })
       .catch((err) => {
         handleServerErorr(err);
@@ -104,20 +111,31 @@ function App() {
 
   useEffect(() => {
     if(loggedIn) {
-    mainApi
-      .loadUserInfo()
-      .then(({ name, email }) => {
-        setCurrentUser({ name, email });
-      })
-      .catch((err) => {
-        handleServerErorr(err);
-      });
+        Promise.all([mainApi.loadUserInfo(), mainApi.getSaveMoviesCards()])
+        .then(([userInfo, moviesSaved])=> {
+            setCurrentUser(userInfo);
+            setIsCheckUserToken(false);
+            if (moviesSaved) {
+                const filterMovies = moviesSaved.filter(({owner})=> owner === userInfo._id)
+                const deletedDublicate = filterMovies.filter((set => ({nameRU}) => !set.has(nameRU) && set.add(nameRU))(new Set()));
+                setLocalStorage('savedMovies', deletedDublicate)
+            }
+        })
+        .catch((err) => {
+            handleServerErorr(err);
+        });
     }
   }, [loggedIn]);
 
   useEffect(() => {
     checkUserToken();
   }, []);
+
+  useEffect(() => {
+    setTimeout(() => {
+      setSuccessText('');
+     }, 2000);
+   },[successText]);
 
   const MoviesContent = ({ loggedIn }) => (
     <>
@@ -141,7 +159,8 @@ function App() {
     handleUpdateUser,
     isLoading,
     serverErrorMessage,
-    resetServerErorr
+    resetServerErorr,
+    successText
   }) => (
     <>
       <Header loggedIn={loggedIn} />
@@ -151,13 +170,17 @@ function App() {
         isLoading={isLoading}
         serverErrorMessage={serverErrorMessage}
         resetServerErorr={resetServerErorr}
+        successText={successText}
       />
     </>
   );
 
   return (
     <CurrentUserContext.Provider value={currentUser}>
-      <div className="page">
+    <div className="page">
+      {isCheckUserToken ? (
+        <Preloader />
+      ) : (
         <Switch>
           <Route exact path='/'>
             <Header loggedIn={loggedIn} />
@@ -167,28 +190,26 @@ function App() {
 
           <ProtectedRoute
             path='/movies'
-            exact
-            component={MoviesContent}
             loggedIn={loggedIn}
+            component={MoviesContent}
           />
 
           <ProtectedRoute
             path='/saved-movies'
-            exact
-            component={SavedMoviesContent}
             loggedIn={loggedIn}
+            component={SavedMoviesContent}
           />
 
           <ProtectedRoute
             path='/profile'
-            exact
+            loggedIn={loggedIn}
             component={ProfileContent}
             handleLogOut={handleLogOut}
             handleUpdateUser={handleUpdateUser}
             isLoading={isLoading}
-            loggedIn={loggedIn}
             serverErrorMessage={serverErrorMessage}
             resetServerErorr={resetServerErorr}
+            successText={successText}
           />
 
           <Route path='/signup'>
@@ -209,12 +230,13 @@ function App() {
               resetServerErorr={resetServerErorr}
             />
           </Route>
-
+          
           <Route path='/*'>
             <NotFoundPage />
           </Route>
         </Switch>
-      </div>
+  )}
+  </div>
     </CurrentUserContext.Provider>
   );
 }

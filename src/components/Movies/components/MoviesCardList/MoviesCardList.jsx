@@ -32,7 +32,7 @@ function MoviesCardList({
       <ul className="movies__list">
         {updatedMovies.length
           ? updatedMovies.map((movie) => (
-              <li key={movie.id || movie.movieId}>
+              <li key={movie.id || movie._id}>
                 <MoviesCard
                   movie={movie}
                   handleMovieRemove={handleMovieRemove}
@@ -41,7 +41,7 @@ function MoviesCardList({
                 />
               </li>
             ))
-          : isFetched && <p className="movies__list-empty">Ничего не найдено</p>}
+          : (isFetched || isSavedMovie) && <p className="movies__list-empty">Ничего не найдено</p>}
       </ul>
 
       {!(updatedMovies.length === movies.length) && (

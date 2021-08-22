@@ -68,6 +68,7 @@ function AuthForm({
                   name="email"
                   className="auth__input"
                   id="email-input"
+                  pattern="^([a-z0-9_-]+\.)*[a-z0-9_-]+@[a-z0-9_-]+(\.[a-z0-9_-]+)*\.[a-z]{2,6}$"
                   value={values.email || ""}
                   onChange={handleChange}
                   disabled={isLoading}

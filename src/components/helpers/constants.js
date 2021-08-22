@@ -8,6 +8,8 @@ export const ERROR_FETCH_MOVIES = 'Во время запроса произош
 
 export const ERROR_INPUT_VALUE = 'Нужно ввести ключевое слово';
 
+export const SUCCESS_MESSAGE = 'Данные успешно сохранены';
+
 export const SCREEN_BIG_SIZE = 1280;
 
 export const SCREEN_MIDDLE_SIZE = 769;

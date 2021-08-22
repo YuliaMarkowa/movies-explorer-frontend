@@ -51,6 +51,15 @@
     place-self: flex-end;
 }
 
+.profile-page__success {
+    color: #EE3465;
+    font-size: 10px;
+    font-weight: normal;
+    line-height: 1,2;
+    margin-bottom: 15px;
+    place-self: auto center;
+}
+
 .profile-page__edit-button-container {
     display: flex;
     flex-direction: column;

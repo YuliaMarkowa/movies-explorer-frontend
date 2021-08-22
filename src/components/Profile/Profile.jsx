@@ -10,6 +10,7 @@ function Profile({
   isLoading,
   serverErrorMessage,
   resetServerErorr,
+  successText
 }) {
   const { name, email } = useContext(CurrentUserContext);
 
@@ -36,6 +37,7 @@ function Profile({
   return (
     <section className="profile-page">
       <h1 className="profile-page__heading">Привет, {name}!</h1>
+      <span className="profile-page__success">{successText || ''}</span>
       <form
         className="profile-page__form"
         name="profileForm"
