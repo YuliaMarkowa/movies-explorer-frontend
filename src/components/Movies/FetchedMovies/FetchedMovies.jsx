@@ -88,7 +88,7 @@ function FetchedMovies({
     }, [isChecked]);
   
     return (
-      <>
+      <div className="fetched-movies">
         {fetchMoviesError && <ErrorComponent message={ERROR_FETCH_MOVIES} />}
   
         <SearchForm
@@ -113,7 +113,7 @@ function FetchedMovies({
             movies={movies}
           />
         )}
-      </>
+      </div>
     );
   }
   

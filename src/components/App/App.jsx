@@ -1,6 +1,6 @@
 import './App.css';
 import { useState, useEffect } from 'react';
-import { Switch, Route, useHistory } from 'react-router-dom';
+import { Switch, Route, useHistory, Redirect } from 'react-router-dom';
 import { CurrentUserContext } from '../../contexts/CurrentUserContext';
 import auth from '../../utils/auth';
 import mainApi from '../../utils/MainApi';
@@ -56,9 +56,9 @@ function App() {
     auth
       .authorize({email, password})
       .then((res) => {
-        setLoggedIn(true);
         localStorage.setItem('jwt', res.token);
-        checkUserToken();
+        checkUserToken()
+        setLoggedIn(true);
         history.push('/movies');
       })
       .catch((err) => {
@@ -130,14 +130,14 @@ function App() {
   useEffect(() => {
     checkUserToken();
   }, []);
-
+  
   useEffect(() => {
     setTimeout(() => {
       setSuccessText('');
-     }, 2000);
-   },[successText]);
+    }, 2000);
+  }, [successText]);
 
-  const MoviesContent = ({ loggedIn }) => (
+   const MoviesContent = ({ loggedIn }) => (
     <>
       <Header loggedIn={loggedIn} />
       <Movies />
@@ -160,7 +160,7 @@ function App() {
     isLoading,
     serverErrorMessage,
     resetServerErorr,
-    successText
+    successText,
   }) => (
     <>
       <Header loggedIn={loggedIn} />
@@ -177,66 +177,74 @@ function App() {
 
   return (
     <CurrentUserContext.Provider value={currentUser}>
-    <div className="page">
-      {isCheckUserToken ? (
-        <Preloader />
-      ) : (
-        <Switch>
-          <Route exact path='/'>
-            <Header loggedIn={loggedIn} />
-            <Main />
-            <Footer />
-          </Route>
-
-          <ProtectedRoute
-            path='/movies'
-            loggedIn={loggedIn}
-            component={MoviesContent}
-          />
-
-          <ProtectedRoute
-            path='/saved-movies'
-            loggedIn={loggedIn}
-            component={SavedMoviesContent}
-          />
-
-          <ProtectedRoute
-            path='/profile'
-            loggedIn={loggedIn}
-            component={ProfileContent}
-            handleLogOut={handleLogOut}
-            handleUpdateUser={handleUpdateUser}
-            isLoading={isLoading}
-            serverErrorMessage={serverErrorMessage}
-            resetServerErorr={resetServerErorr}
-            successText={successText}
-          />
-
-          <Route path='/signup'>
-            <Register 
-              onRegister={handleRegister} 
-              isLoading={isLoading} 
-              serverErrorMessage={serverErrorMessage} 
-              resetServerErorr={resetServerErorr}
-            />
-          </Route>
-
-          <Route path='/signin'>
-            <Login
-              onLogin={handleLogin}
-              isLoading={isLoading}
+      <div className="page">
+        {isCheckUserToken ? (
+          <Preloader className="page_location" />
+        ) : (
+          <Switch>
+            <Route exact path='/'>
+              <Header loggedIn={loggedIn} />
+              <Main />
+              <Footer />
+            </Route>
+  
+            <ProtectedRoute
+              path='/movies'
               loggedIn={loggedIn}
+              component={MoviesContent}
+            />
+  
+            <ProtectedRoute
+              path='/saved-movies'
+              loggedIn={loggedIn}
+              component={SavedMoviesContent}
+            />
+  
+            <ProtectedRoute
+              path='/profile'
+              loggedIn={loggedIn}
+              component={ProfileContent}
+              handleLogOut={handleLogOut}
+              handleUpdateUser={handleUpdateUser}
+              isLoading={isLoading}
               serverErrorMessage={serverErrorMessage}
               resetServerErorr={resetServerErorr}
+              successText={successText}
             />
-          </Route>
-          
-          <Route path='/*'>
-            <NotFoundPage />
-          </Route>
-        </Switch>
-  )}
-  </div>
+  
+            <Route path='/signup'>
+              {!loggedIn ? (
+                <Register
+                  onRegister={handleRegister}
+                  isLoading={isLoading}
+                  serverErrorMessage={serverErrorMessage}
+                  resetServerErorr={resetServerErorr}
+                />
+              ) : (
+                <Redirect to='/' />
+              )}
+            </Route>
+  
+            <Route path='/signin'>
+              {!loggedIn ? (
+                <Login
+                  onLogin={handleLogin}
+                  isLoading={isLoading}
+                  loggedIn={loggedIn}
+                  serverErrorMessage={serverErrorMessage}
+                  resetServerErorr={resetServerErorr}
+                />
+              ) : (
+                <Redirect to='/' />
+              )}
+            </Route>
+  
+            <Route path='/*'>
+              <NotFoundPage />
+            </Route>
+          </Switch>
+        )}
+      </div>
     </CurrentUserContext.Provider>
   );
 }

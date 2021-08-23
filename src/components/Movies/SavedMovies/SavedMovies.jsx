@@ -11,15 +11,18 @@ function SavedMovies() {
     const [isMovieAmount, setIsMoviesAmount] = useState(null);
     const [getMoviesAmount, setGetMoviesAmount] = useState(null);
     const [isChecked, setIsChecked] = useState(false);
+    const [isSavedMoviesLength, setIsSavedMoviesLength] = useState(!isSavedMovies.length);
     const [isWord, setIsWord] = useState("");
   
     useLayoutEffect(() => {
       const {
         savedIsMovieAmount,
+        savedIsFetched,
         savedGetMoviesAmount,
       } = getLocalStorageInfo();
       setIsMoviesAmount(savedIsMovieAmount);
       setGetMoviesAmount(savedGetMoviesAmount);
+      setIsSavedMoviesLength(savedIsFetched || false)
     }, []);
   
     function handleMovieRemove(movieId) {
@@ -37,6 +40,7 @@ function SavedMovies() {
   
     function getLocalStorageInfo() {
       const savedWord = getLocalStorage('savedWord');
+      const savedIsFetched = getLocalStorage('isFetched');
       const savedMovies = getLocalStorage('savedMovies');
       const savedIsChecked = getLocalStorage('isCheckedSaved');
       const savedIsMovieAmount = getLocalStorage('isMovieAmount');
@@ -44,6 +48,7 @@ function SavedMovies() {
   
       return {
         savedWord,
+        savedIsFetched,
         savedMovies,
         savedIsChecked,
         savedIsMovieAmount,
@@ -54,6 +59,7 @@ function SavedMovies() {
     function handleSearch(word) {
       const { savedMovies, savedIsChecked } = getLocalStorageInfo();
       getMovies(word, savedMovies, savedIsChecked);
+      setIsSavedMoviesLength(true)
     }
   
     function getMovies(word, movies, isChecked) {
@@ -68,29 +74,31 @@ function SavedMovies() {
   
     useEffect(() => {
       setLocalStorage('isCheckedSaved', isChecked);
-  
+      
       const { savedWord, savedMovies, savedIsChecked } = getLocalStorageInfo();
       getMovies(savedWord ?? isWord, savedMovies, savedIsChecked ?? isChecked);
     }, [isChecked]);
   
     return (
-      <>
+      <div className="saved-movies">
         <SearchForm
-          nameWord='savedWord'
+          nameWord="savedWord"
           isWord={isWord}
           setIsWord={setIsWord}
           isChecked={isChecked}
           setIsChecked={setIsChecked}
           handleSearch={handleSearch}
         />
-        <MoviesCardList
-          isMovieAmount={isMovieAmount}
-          getMoviesAmount={getMoviesAmount}
-          handleMovieRemove={handleMovieRemove}
-          movies={isSavedMovies}
-        />
+
+          <MoviesCardList
+            isMovieAmount={isMovieAmount}
+            getMoviesAmount={getMoviesAmount}
+            handleMovieRemove={handleMovieRemove}
+            movies={isSavedMovies}
+            isSavedMoviesLength={isSavedMoviesLength}
+          />
         <Devider />
-      </>
+      </div>
     );
   }
   

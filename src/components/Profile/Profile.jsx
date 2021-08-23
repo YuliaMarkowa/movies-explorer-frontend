@@ -23,7 +23,6 @@ function Profile({
       email,
     });
   }, [name, email]);
-  console.log(name, email);
 
   function handleSubmit(evt) {
     evt.preventDefault();

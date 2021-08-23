@@ -11,6 +11,7 @@ function MoviesCardList({
   isSavedMovie,
   setIsSavedMovie,
   handleMovieRemove,
+  isSavedMoviesLength
 }) {
   const [updatedMovies, setUpdatedMovies] = useState([]);
   const [triggerBtn, setTriggerBtn] = useState(0);
@@ -41,7 +42,7 @@ function MoviesCardList({
                 />
               </li>
             ))
-          : (isFetched || isSavedMovie) && <p className="movies__list-empty">Ничего не найдено</p>}
+          : (isFetched || isSavedMoviesLength) && <p className="movies__list-empty">Ничего не найдено</p>}
       </ul>
 
       {!(updatedMovies.length === movies.length) && (
