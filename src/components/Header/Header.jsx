@@ -8,7 +8,7 @@ import user from '../../images/icon-main.svg';
 
 function Header({ loggedIn }) {
   const [isNavMenuOpen, setIsNavMenuOpen] = useState(false);
-
+  
   function toggleNavMenu() {
     setIsNavMenuOpen(!isNavMenuOpen);
   }
@@ -44,7 +44,7 @@ function Header({ loggedIn }) {
               </nav>
               <Link
                 to="/profile"
-                className="header__nav-movies header__nav-movies_account"
+                className="header__account"
               >
                 Аккаунт
                 <img

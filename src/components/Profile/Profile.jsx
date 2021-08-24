@@ -1,65 +1,110 @@
+import { useEffect, useContext } from 'react';
+import { CurrentUserContext } from '../../contexts/CurrentUserContext';
+import useFormValidator from '../../hooks/useFormValidator';
+import Preloader from '../Preloader/Preloader';
 import './Profile.css';
-import { Link } from 'react-router-dom';
-import { useState } from 'react';
 
-function Profile() {
-  const [isButtonActive, setIsButtonActive] = useState(false);
+function Profile({
+  handleLogOut,
+  handleUpdateUser,
+  isLoading,
+  serverErrorMessage,
+  resetServerErorr,
+  successText
+}) {
+  const { name, email } = useContext(CurrentUserContext);
 
-  function toggleButton() {
-    setIsButtonActive(!isButtonActive);
+  const { values, setValues, errors, isValid, handleChange } =
+    useFormValidator();
+
+  useEffect(() => {
+    setValues({
+      name,
+      email,
+    });
+  }, [name, email]);
+
+  function handleSubmit(evt) {
+    evt.preventDefault();
+    handleUpdateUser(values);
   }
+
+  useEffect(() => {
+    resetServerErorr();
+  }, []);
 
   return (
     <section className="profile-page">
-      <h1 className="profile-page__heading">Привет, Виталий!</h1>
-      <form className="profile-page__form" name="profileForm">
-        <div className="profile-page__info-container">
-          <label className="profile-page__text">Имя</label>
-          <input
-            type="text"
-            name="name"
-            className="profile-page__input"
-            id="name-input"
-            minLength="2"
-            maxLength="30"
-            required
-          />
-        </div>
-        <div className="profile-page__info-container">
-          <label className="profile-page__text">E-mail</label>
-          <input
-            type="email"
-            name="email"
-            className="profile-page__input"
-            id="email-input"
-            required
-          />
-        </div>
-      </form>
-      {!isButtonActive ? (
-        <>
-          <button
-            type="submit"
-            className="profile-page__edit-button"
-            onClick={toggleButton}
-          >
-            Редактировать
-          </button>
-          <Link to="/">
-            <button type="button" className="profile-page__logout-button">
+      <h1 className="profile-page__heading">Привет, {name}!</h1>
+      <span className="profile-page__success">{successText || ''}</span>
+      <form
+        className="profile-page__form"
+        name="profileForm"
+        onSubmit={handleSubmit}
+        noValidate
+      >
+        {isLoading ? (
+          <Preloader />
+        ) : (
+          <>
+            <div className="profile-page__info-container">
+              <label className="profile-page__text">Имя</label>
+              <input
+                type="text"
+                name="name"
+                className="profile-page__input"
+                id="name-input"
+                minLength="2"
+                maxLength="30"
+                value={values.name || ""}
+                onChange={handleChange}
+                required
+              />
+            </div>
+            <span className="profile-page__input-error">
+              {errors.name || ""}
+            </span>
+            <div className="profile-page__info-container">
+              <label className="profile-page__text">E-mail</label>
+              <input
+                type="email"
+                name="email"
+                className="profile-page__input"
+                id="email-input"
+                value={values.email || ""}
+                onChange={handleChange}
+                required
+              />
+            </div>
+            <span className="profile-page__input-error">
+              {errors.email || ""}
+            </span>
+            <div className="profile-page__edit-button-container">
+              <span className="profile-page__server-error">
+                {serverErrorMessage}
+              </span>
+              <button
+                type="submit"
+                className={`profile-page__edit-button ${
+                  !isValid ? "profile-page__edit-button_disabled" : ""
+                }`}
+                disabled={
+                  !isValid || (values.name === name && values.email === email)
+                }
+              >
+                Редактировать
+              </button>
+            </div>
+            <button
+              type="button"
+              className="profile-page__logout-button"
+              onClick={handleLogOut}
+            >
               Выйти из аккаунта
             </button>
-          </Link>
-        </>
-      ) : (
-        <button
-          aria-label="Сохранить"
-          type="submit"
-          className="profile-page__save-button"
-        >
-          Сохранить
-        </button>
-      )}
+          </>
+        )}
+      </form>
     </section>
   );
 }
