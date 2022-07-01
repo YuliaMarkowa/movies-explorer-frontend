@@ -6,10 +6,6 @@
 
 https://www.figma.com/file/CEVDBEl3nNE9nV45mznjvF/DiplomaYuliaMarkowa?node-id=891%3A3857
 
-## Ссылка на проект:
-
-https://yulia.diploma.nomoredomains.club
-
 ## Запустить проект:
 
 `npm install`
